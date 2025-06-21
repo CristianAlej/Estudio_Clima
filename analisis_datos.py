@@ -3,7 +3,7 @@ import estadistica
 import numpy as np
 
 
-estaditicas_basicas=tabla.agg(['mean','median','var','std',estadistic_a.Estadistica.moda_serie])
+estaditicas_basicas=tabla.agg(['mean','median','var','std',estadistica.Estadistica.moda_serie])
 estaditicas_basicas.index=['promedio','mediana','varianza','desviacion estandar','moda']
 estaditicas_basicas.columns=['temp.prom','temp.min','temp.max','direcc.viento','veloc.viento','presion.atm']
 
@@ -14,7 +14,7 @@ pearson=estadistica.Estadistica.correlacion_pearson(temperatura_prom,presion_atm
 covarianza=estadistica.Estadistica.covarianza(temperatura_prom,velocidad_viento)
 
 #Covarianza temperatura-presion atmosferica
-covarianza2023=estadistic_a.Estadistica.covarianza(temperatura_prom,presion_atm)
+covarianza2023=estadistica.Estadistica.covarianza(temperatura_prom,presion_atm)
 
 banda=estadistica.Estadistica.bandas_error(tabla)
 desv_estandar_prom=banda['cent'].tolist()
