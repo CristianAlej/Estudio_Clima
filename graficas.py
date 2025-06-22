@@ -8,18 +8,11 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 
-def grafico_temperatura(date, temp_promedio, temp_max, temp_min, std_promedio, std_max, std_min):
+def grafico_temperatura():
     sns.set(style="darkgrid")
     plt.figure(figsize=(12, 7)) 
-    df = pd.DataFrame({
-        'Fecha': date,
-        'Temp_Promedio': temp_promedio,
-        'Temp_Max': temp_max,
-        'Temp_Min': temp_min,
-        'Std_Promedio': std_promedio,
-        'Std_Max': std_max,
-        'Std_Min': std_min
-    })
+    df = pd.DataFrame({'Fecha': date,'Temp_Promedio': temperatura_prom,'Temp_Max': temperatura_max,
+        'Temp_Min': temperatura_min,'Std_Promedio': desv_estandar_prom,'Std_Max': desv_estandar_sup,'Std_Min': desv_estandar_inf})
     df.set_index('Fecha', inplace=True)
     
     sns.lineplot(data=df, x=df.index, y='Temp_Promedio', color='green', label='Temperatura Promedio')
@@ -49,8 +42,7 @@ def grafico_temperatura(date, temp_promedio, temp_max, temp_min, std_promedio, s
     plt.show()
 
 
-grafico_temperatura(date, temperatura_prom, temperatura_max,temperatura_min,
-                     desv_estandar_prom, desv_estandar_sup, desv_estandar_inf)
+grafico_temperatura()
 
 
 def rosa_polar(direccion,velocidad):
