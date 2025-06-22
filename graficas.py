@@ -199,66 +199,6 @@ comp_temporada_invernal(1)
 comp_temporada_invernal(2)
   
 
-def detectar_tormentas():
-    fecha = pd.date_range(start=date[151],end=date[333])
-    datos={'Fecha' : fecha, 'Veloc.Viento' : velocidad_viento_ciclon,'Presion.Atm' : presion_atm_ciclon}
-    df=pd.DataFrame(datos)
-    condiciones = [(df['Veloc.Viento'] >= 25) & (df['Veloc.Viento']<63),
-        (df['Veloc.Viento'] >= 63) & (df['Veloc.Viento'] < 118),
-        (df['Veloc.Viento'] >= 118)]
-    categorias = ['Posible Tormenta Cercana','Tormenta Tropical o Banda Ciclonica', 'Ciclón']
-    df['Evento'] = np.select(condiciones, categorias, default=None)
-    df_eventos = df[df['Evento'].notna()].copy()
-    if df_eventos.empty:
-        return "No hubo ningun evento meteorologico"
-    
-    # Agrupar por fecha y evento para encontrar la máxima velocidad
-    resultado = df_eventos.groupby(['Fecha', 'Evento'])['Veloc.Viento'].max().reset_index()
-    resultado = resultado.rename(columns={'Fecha': 'Fecha','Evento': 'Evento','Veloc.Viento': 'Velocidad Maxima (km/h)'})
-    
-    # Ordenar por fecha
-    resultado = resultado.sort_values('Fecha')
-    
-    return resultado
 
-
-eventos = detectar_tormentas()
-
-
-def detectar_frentes_frios(n):
-    if n ==1:
-        num="Inicio de Año"
-        fechas = pd.date_range(start=date[0],end=date[150])
-        velocidad_viento_invierno=velocidad_viento_invierno_1
-        temperatura_min_invierno=temperatura_min_invierno_1
-    elif n==2:
-        num="Final de Año"
-        fechas = pd.date_range(start=date[273],end=date[-1])
-        velocidad_viento_invierno=velocidad_viento_invierno_2
-        temperatura_min_invierno=temperatura_min_invierno_2
-    else: 
-        print("Error los valores son 1 o 2")
-        return False
-
-    datos={'Fecha' : fechas, 'Veloc.Viento' : velocidad_viento_invierno,'Temperatura' : temperatura_min_invierno}
-    df=pd.DataFrame(datos)
-    condiciones = [(df['Veloc.Viento'] >= 15) & (df['Veloc.Viento']<40) & (df['Temperatura']<18)]
-    categorias = ['Posible Frente Frio']
-    df['Evento'] = np.select(condiciones, categorias, default=None)
-    df_eventos = df[df['Evento'].notna()].copy()
-    if df_eventos.empty:
-        return "No hubo ningun frente frio"
-    
-    # Agrupar por fecha y evento para encontrar la máxima velocidad
-    resultado = df_eventos.groupby(['Fecha', 'Evento'])['Temperatura'].min().reset_index()
-    resultado = resultado.rename(columns={'Fecha': 'Fecha','Evento': 'Evento','Temperatura': 'Temperatura minima °C'})
-    
-    # Ordenar por fecha
-    resultado = resultado.sort_values('Fecha')
-    
-    return resultado
-
-frentes_frios_1 = detectar_frentes_frios(1)
-frentes_frios_2 = detectar_frentes_frios(2)
 
 
