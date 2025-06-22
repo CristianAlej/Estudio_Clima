@@ -7,7 +7,7 @@ años=[2023,2024]
 print(f"Estan disponibeles las bases de datos de los años: {años} ")
 año=str(input("Por favor introduzca el año: ")).strip()
 nombre_archivo=f"export_HVIEJ_HAV_{año}.xlsx"
-ruta_datos = Path(r"C:\Users\Cristian\Downloads\Telegram Desktop") / f"export_HVIEJ_HAV_{año}.xlsx"
+ruta_datos = Path(r"C:\Users\Cristian\Desktop\Estudio_Clima") / f"export_HVIEJ_HAV_{año}.xlsx"
 df=pd.read_excel(ruta_datos)
 
 #Datos clima

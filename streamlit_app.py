@@ -5,3 +5,6 @@ from graficas import *
 
 def main():
     st.title('Analisis Climatico')
+
+
+main()
