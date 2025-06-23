@@ -119,13 +119,3 @@ class Estadistica:
         
         return cov / (desv_x * desv_y)
     
-    @staticmethod
-    def bandas_error(df, col_promedio='temp.prom', 
-                            col_max='temp.max', col_min='temp.min'):
-   
-        resultados = pd.DataFrame(index=df.index)
-        resultados['b_sup'] = df[col_max] - df[col_promedio]
-        resultados['b_inf'] = df[col_promedio] - df[col_min]
-        resultados['cent'] = df[col_max]-df[col_min]
-    
-        return resultados
