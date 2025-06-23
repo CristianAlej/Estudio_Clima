@@ -89,7 +89,7 @@ def realacion(año):
 - Aire frío:  
   - Las moléculas se mueven más lento, se compactan y aumentan su densidad.  
   - Esto genera altas presiones (como en los polos o durante la noche).''')
-    elif rela=='☁️Presion atmosferica - Viento💨': 
+    else: 
         presion_viento(año)
         x=ext_columna('veloc.viento',año)
         y=ext_columna('presion.atm',año)
@@ -128,7 +128,6 @@ Vientos Anticiclónicos (Alta Presión)
         - H. Sur: Giran en contra del reloj.
   ''')
         
-    else:
-        return '🖇'
+
         
 realacion(año)
